@@ -1,0 +1,10 @@
+{
+"version": 2,
+"name": "my_tg_bot_sleeper",
+"builds": [
+  { "src": "src/index.ts", "use": "@vercel/node" }
+],
+"routes": [
+  { "src": "/(.*)", "dest": "src/index.ts" }
+]
+}
