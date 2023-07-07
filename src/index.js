@@ -18,6 +18,7 @@ log('bot')
 
 const dontSleep = async (chatId) => {
   const res = await fetch('https://te-bot.onrender.com/');
+await fetch('https://sleeper-10ug.onrender.com');
   if (res.status === 200) {
     await bot.sendMessage(chatId, 'App on render work', {
       disable_notification: true,
