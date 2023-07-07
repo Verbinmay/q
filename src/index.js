@@ -10,9 +10,8 @@ const port = process.env.PORT || 3000;
 const app = express();
 log('start')
 
-const bot = new TelegramBot(process.env.TOKEN, {
-  polling: true,
-});
+let bot = new TelegramBot(process.env.TOKEN);
+ bot.startPolling({ restart: true });
 log('bot')
 
 
@@ -51,3 +50,14 @@ app.get('', (req, res) => {
 app.listen(port, () => {
   log(`App started at ${port} port`);
 });
+
+async function stop(){
+  if (bot != null) {
+    await bot.stopPolling({ cancel: true });
+    bot = null;
+  }
+  process.exit();
+}
+
+process.on('SIGQUIT', stop);
+process.on('SIGINT', stop);
