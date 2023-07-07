@@ -8,10 +8,13 @@ require('dotenv').config();
 
 const port = process.env.PORT || 3005;
 const app = express();
+log('start')
 
 const bot = new TelegramBot(process.env.TOKEN, {
   polling: true,
 });
+log('bot')
+
 
 const dontSleep = async (chatId) => {
   const res = await fetch('https://te-bot.onrender.com/');
@@ -28,6 +31,7 @@ const dontSleep = async (chatId) => {
 
 bot.on('message', (msg) => {
   const chatId = msg.from.id;
+  log('chatId')
 
 
   // cron.schedule('*/30 * * * *', async () => {
