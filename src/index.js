@@ -6,7 +6,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 require('dotenv').config();
 
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3000;
 const app = express();
 log('start')
 
@@ -18,7 +18,7 @@ log('bot')
 
 const dontSleep = async (chatId) => {
   const res = await fetch('https://te-bot.onrender.com/');
-await fetch('https://sleeper-10ug.onrender.com');
+await fetch('https://sleeper-f2yf.onrender.com');
   if (res.status === 200) {
     await bot.sendMessage(chatId, 'App on render work', {
       disable_notification: true,
@@ -39,6 +39,7 @@ bot.on('message', (msg) => {
   cron.schedule('* * * * * ', async () => {
     log(await dontSleep(chatId));
   });
+  return
 });
 app.use(cors());
 app.use(express.json());
