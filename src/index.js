@@ -16,7 +16,9 @@ const bot = new TelegramBot(process.env.TOKEN, {
 const dontSleep = async (chatId) => {
   const res = await fetch('https://te-bot.onrender.com/');
   if (res.status === 200) {
-    await bot.sendMessage(chatId, 'App on render work', { disable_notification: true });
+    await bot.sendMessage(chatId, 'App on render work', {
+      disable_notification: true,
+    });
     return 'App on render work';
   } else {
     await bot.sendMessage(chatId, 'ERROR', { disable_notification: true });
@@ -26,7 +28,7 @@ const dontSleep = async (chatId) => {
 
 bot.on('message', (msg) => {
   const chatId = msg.from.id;
-  log(chatId);
+
 
   // cron.schedule('*/30 * * * *', async () => {
   cron.schedule('* * * * * ', async () => {
